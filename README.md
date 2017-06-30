@@ -13,6 +13,6 @@ Installation & documentation :
 * [Support multi-language][2], learn how to do it.
 * See the [useful functionalities][3] that Direct integrates to speed up your development process.
 
-[1]: https://berwick.fr/projects/directframework/documentation/
+[1]: https://berwick.fr/projects/directframework/documentation
 [2]: https://berwick.fr/projects/directframework/documentation/support-multi-lang
 [3]: #
