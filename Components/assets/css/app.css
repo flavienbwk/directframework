@@ -1,0 +1,26 @@
+/* 
+    Created on : 24 juin 2017, 23:28:33
+    The CSS of Direct Framework.
+    Your CSS must be in the main.css file or another file than this one.
+*/
+
+.direct-error-frame{
+    text-align:center;
+    background-color:#383838;
+    color:white;
+    width:100%;
+    border:2px solid red;
+    font-family:monospace;
+    padding:10px;
+}
+
+.direct-error-frame error-title{
+    padding:10px;
+    display:inline-block;
+    font-weight:500;
+}
+
+.direct-error-frame error-content{
+    display:inline-block;
+    padding:10px;
+}
