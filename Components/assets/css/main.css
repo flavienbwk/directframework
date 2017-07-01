@@ -29,6 +29,10 @@ p{
     line-height:1.7;
 }
 
+code{
+    color:#d56e00;
+}
+
 .main-jumbotron{
     background-image: url("../../assets/images/geom_blue.png");
     background-size: cover;

@@ -81,8 +81,8 @@
                 <hr>
                 <ul>
                     <li>Support us!</li>
-                    <li>GitHub</li>
-                    <li>Contact</li>
+                    <li><a href="https://github.com/flavienbwk/directframework" target="_blank">GitHub</a></li>
+                    <li><a href="mailto:flavien@berwick.fr">Contact</a></li>
                 </ul>
             </div>
         </div>

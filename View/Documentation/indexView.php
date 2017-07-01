@@ -137,7 +137,7 @@
                             <li>
                                 <p>We have then to include these models and views in the articles controler <b>./Controler/Forum/articlesControler.php</b>.</p>
                                 <div class="pre-uncolored">
-                                    <?= highlight_string(file_get_contents($Page->renderURI("Controler/Documentation/assets/example." . $Page->getLanguage() . ".php"))); ?>
+                                    <?php highlight_string(file_get_contents($Page->renderURI("Controler/Documentation/assets/example." . $Page->getLanguage() . ".php"))); ?>
                                 </div>
                             </li>
                             <li>
