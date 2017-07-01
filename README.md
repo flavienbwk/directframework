@@ -1,3 +1,7 @@
+<center>
+<img src="https://speeload.com/uploads/ae1h6SUhhG.png" width="200">
+</center>
+
 # What is it ?
 A very simple and lightweight PHP framework which allows you to easily support multi-language for your website, and to quickly deploy its functionalities with a clean code.
 
