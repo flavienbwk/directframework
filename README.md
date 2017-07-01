@@ -1,5 +1,9 @@
 **This repository is the EXAMPLE one, which is the documentation website (https://berwick.fr/projects/directframework). Download it to see how works the framework with concrete examples.**
 
+<p align="center">
+<img src="https://speeload.com/uploads/ae1h6SUhhG.png" width="200">
+<p>
+
 # What is it ?
 A very simple and lightweight PHP framework which allows you to easily support multi-language for your website, and to quickly deploy its functionalities with a clean code.
 
