@@ -5,7 +5,7 @@
 # What is it ?
 A very simple and lightweight PHP framework which allows you to easily support multi-language for your website, and to quickly deploy its functionalities with a clean code.
 
-_Actual version :_ __ed-0.1__
+_Actual version :_ __ed-0.2__
 
 # Why this one ?
 Simple architecture, easy to learn, lightweight, no need to install anything (just upload the framework files), easily support multiple languages. Available developer if there's a problem.

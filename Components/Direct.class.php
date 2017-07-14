@@ -7,7 +7,6 @@
  */
 
 session_start();
-date_default_timezone_set("Europe/Paris");
 
 class Direct {
 
@@ -42,10 +41,53 @@ class Direct {
         }
     }
 
+    public function addError($title, $content = ""){
+        if(isset($_SESSION["notifications"]["errors"])){
+            array_push($_SESSION["notifications"]["errors"],array("title"=>$title,"content"=>$content));
+        }else{
+            $_SESSION["notifications"]["errors"][0]["title"]=$title;
+            $_SESSION["notifications"]["errors"][0]["content"]=$content;
+        }
+    }
+    
+    public function addInfo($title, $content = ""){
+        if(isset($_SESSION["notifications"]["infos"])){
+            array_push($_SESSION["notifications"]["infos"],array("title"=>$title,"content"=>$content));
+        }else{
+            $_SESSION["notifications"]["infos"][0]["title"]=$title;
+            $_SESSION["notifications"]["infos"][0]["content"]=$content;
+        }
+    }
+    
+    public function showInfos($remove_notifs = true){
+        foreach ($_SESSION["notifications"]["infos"] as $info){
+            echo $this->raiseInfo($info["title"],$info["content"]);
+        }
+        if($remove_notifs){
+            unset($_SESSION["notifications"]["infos"]);
+        }
+    }
+    
+    public function showErrors($remove_notifs = true){
+        foreach ($_SESSION["notifications"]["errors"] as $error){
+            echo $this->raiseError($error["title"],$error["content"]);
+        }
+        if($remove_notifs){
+            unset($_SESSION["notifications"]["errors"]);
+        }
+    }
+    
     public function raiseError($title, $content = "") {
-        echo '<div class="direct-error-frame">'
+        return '<div class="direct-error-frame">'
         . '<span class="error-title">' . $title . '</span>'
         . '<span class="error-content">' . $content . '</span>'
+        . '</div>';
+    }
+    
+    public function raiseInfo($title, $content = "") {
+        return '<div class="direct-info-frame">'
+        . '<span class="info-title">' . $title . '</span>'
+        . '<span class="info-content">' . $content . '</span>'
         . '</div>';
     }
 
