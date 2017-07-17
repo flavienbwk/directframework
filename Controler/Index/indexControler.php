@@ -14,7 +14,7 @@ $Page = new Page();
 /*
  * Models (facultative)
  */
-require($Page->renderURI("View/Index/indexIndex.php"));
+require($Page->renderURI("Model/Index/indexIndex.php"));
 $indexModel = new indexModel();
 
 /*

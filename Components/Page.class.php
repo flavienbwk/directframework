@@ -17,6 +17,8 @@ class Page extends Direct {
         $this->_page_title = $this->getConfigVar("project_title");
         $this->setTitle($this->getConfigVar("project_title"));
         $this->setLanguage("en");
+        
+        $this->goFollowPath(); // Facultative.
     }
 
     public function setLanguage($language) {
