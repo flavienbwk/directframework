@@ -25,7 +25,7 @@ class Page extends Direct {
         if (file_exists(dirname(__FILE__) . "/langs/" . $language . "/")) {
             $this->_language = $language;
         } else {
-            $this->raiseError("Inexistant language. Not found under langs/<b>$language</b>. Replaced with english (en).");
+            $this->raiseError("Inexistant language. Not found under Components/langs/<b>$language</b>. Replaced with english (en).");
         }
     }
 

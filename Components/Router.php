@@ -2,12 +2,21 @@
 
 /*
  * Direct Framework, under MIT license.
+ * ed-0.4
  */
 
+$no_404_file = json_decode(file_get_contents("config.json"), true);
+$no_404 = ($no_404_file["router_url_parameters"] == "true") ? true : false;
+
 if (isset($_GET["path"])) {
+
     $path = htmlentities(strtolower($_GET["path"]));
     $path_i = "Controler/" . ucfirst($path) . "/indexControler.php";
-    require(renderURI($path_i));
+    if (file_exists(renderURI($path_i))) {
+        require(renderURI($path_i));
+    } else {
+        header("Location:" . $_SERVER["REQUEST_URI"] . "/");
+    }
 } else if (isset($_GET["path_dir"]) && isset($_GET["path_file"])) {
     $path_dir = $_GET["path_dir"];
     $path_file = $_GET["path_file"];
@@ -16,15 +25,34 @@ if (isset($_GET["path"])) {
     for ($i = 0; $i < sizeof($dirs) - 1; $i++) {
         $path_i .= ucfirst($dirs[$i] . "/");
     }
-    $path_i .= $path_file . "Controler.php";
-    $ruri=renderURI($path_i);
+    $path_s = $path_i . $path_file . "Controler.php";
+    $ruri = renderURI($path_s);
     if ($ruri) {
         require($ruri);
     } else {
-        header("HTTP/1.0 404 Not Found");
+        $ruri = renderURI($path_i . "indexControler.php");
+        if ($ruri) {
+            require($ruri);
+        } else {
+            if (empty($path_file) && $no_404) {
+                $path_file = substr($path_dir, 0, -1);
+                $_GET["path_file"] = $path_file;
+                $ruri = renderURI("Controler/Index/indexControler.php");
+                if ($ruri) {
+                    require($ruri);
+                } else {
+                    header("HTTP/1.0 404 Not Found");
+                }
+            } else {
+                if (substr($_SERVER["REQUEST_URI"], -1) != "/" && $no_404) {
+                    header("Location:" . $_SERVER["REQUEST_URI"] . "/");
+                } else {
+                    header("HTTP/1.0 404 Not Found");
+                }
+            }
+        }
     }
 } else {
-    // Error 404.
     header("HTTP/1.0 404 Not Found");
 }
 

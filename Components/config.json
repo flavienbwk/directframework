@@ -1,7 +1,10 @@
 {
-    "direct_version":"ed-0.3",
+    "direct_version":"ed-0.4",
     "app_version":"your_app_version",
     "project_title":"YOUR_PROJECT_TITLE",
     "website_title":"YOUR TITLE (change it in Components/config.json)",
-    "default_language":"en"
+    "default_language":"en",
+    "active_notifications":"yes",
+    "log_max_file_size":"4096",
+    "router_url_parameters":"true"
 }

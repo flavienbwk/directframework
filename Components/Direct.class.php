@@ -47,18 +47,18 @@ class Direct {
         $url_parameters = explode("&", $url_get_sentence);
         $parameters = array();
         foreach ($url_parameters as $parameter_word) {
-            $act_expl_param=explode("=",$parameter_word);
-            if(isset($act_expl_param[1])){
-                array_push($parameters,array($act_expl_param[0],$act_expl_param[1]));
-            }else{
-                array_push($parameters,array($act_expl_param[0],""));
+            $act_expl_param = explode("=", $parameter_word);
+            if (isset($act_expl_param[1])) {
+                array_push($parameters, array($act_expl_param[0], $act_expl_param[1]));
+            } else {
+                array_push($parameters, array($act_expl_param[0], ""));
             }
         }
         unset($_GET["path"]);
-        for($i=0;$i<sizeof($parameters);$i++){
-            $parameter_name=$parameters[$i][0];
-            $parameter_content=$parameters[$i][1];
-            $_GET[$parameter_name]=$parameter_content;
+        for ($i = 0; $i < sizeof($parameters); $i++) {
+            $parameter_name = $parameters[$i][0];
+            $parameter_content = $parameters[$i][1];
+            $_GET[$parameter_name] = $parameter_content;
         }
     }
 
@@ -161,28 +161,41 @@ class Direct {
         return $ip;
     }
 
-    public function renderURI($path) {
-        $open = $path;
-        $open1 = "./" . $path;
-        $open2 = "../" . $path;
-        $open3 = "./../" . $path;
-        $open4 = "../../" . $path;
-        if (file_exists($open)) {
-            return $path;
-        } else if (file_exists($open1)) {
-            $path = $open1;
-            return $path;
-        } else if (file_exists($open2)) {
-            $path = $open2;
-            return $path;
-        } else if (file_exists($open3)) {
-            $path = $open3;
-            return $path;
-        } else if (file_exists($open4)) {
-            $path = $open4;
-            return $path;
+    public function renderURI($path, $nav_link = false) {
+        if ($nav_link) {
+            /*
+             * Set it to true when you want to call a link 
+             * in your navbar so renderURI() can return
+             * a path relative to the name of the controlers.
+             */
+            if(isset($_GET["path_file"])){
+                return "../".$path;
+            }else{
+                return $path;
+            }
         } else {
-            return false;
+            $open = $path;
+            $open1 = "./" . $path;
+            $open2 = "../" . $path;
+            $open3 = "./../" . $path;
+            $open4 = "../../" . $path;
+            if (file_exists($open)) {
+                return $path;
+            } else if (file_exists($open1)) {
+                $path = $open1;
+                return $path;
+            } else if (file_exists($open2)) {
+                $path = $open2;
+                return $path;
+            } else if (file_exists($open3)) {
+                $path = $open3;
+                return $path;
+            } else if (file_exists($open4)) {
+                $path = $open4;
+                return $path;
+            } else {
+                return false;
+            }
         }
     }
 
@@ -234,8 +247,25 @@ class Direct {
         /*
          * Path of the file in wich is saved the log.
          */
-        $filename_log = dirname(__FILE__) . "/Direct.log.json";
         $to_save = array();
+        $path = dirname(__FILE__) . "/log/";
+        $log_max_file_size = intval($this->getConfigVar("log_max_file_size"));
+        $log_file_number = 0;
+        $file_list = array_diff(scandir($path), array('.', '..'));
+
+        if (sizeof($file_list) == 0) {
+            $log_file_number = 0;
+        } else {
+            $log_last_file = $file_list[sizeof($file_list) + 2 - 1];
+            $log_last_file_number = explode(".", $log_last_file);
+            $log_last_file_number = intval($log_last_file_number[0]);
+            if (filesize($path . $log_last_file) >= $log_max_file_size) {
+                $log_file_number = $log_last_file_number + 1;
+            } else {
+                $log_file_number = $log_last_file_number;
+            }
+        }
+        $log_filename = $path . $log_file_number . ".log.json";
 
         if (!empty($title)) {
             /*
@@ -243,6 +273,7 @@ class Direct {
              * it is replaced automatically so you can gain time.
              * 
              * You can add a description to each pre_filled title.
+             * Followings are examples.
              */
             $pre_filled_array = array(
                 "INTERNAL_SCRIPT" => "", // To debug a script.
@@ -282,8 +313,8 @@ class Direct {
         $to_save["date"] = date("H:i d/m/Y", $time);
         $to_save["timestamp"] = $time;
 
-        if (file_exists($filename_log)) {
-            $fc = file_get_contents($filename_log);
+        if (file_exists($log_filename)) {
+            $fc = file_get_contents($log_filename);
             if (!empty($fc) && $fc != "null" && $this->isJson($fc)) {
                 $fc = json_decode($fc, true);
                 array_push($fc, $to_save);
@@ -294,7 +325,7 @@ class Direct {
         } else {
             $to_save = json_encode(array(0 => $to_save));
         }
-        file_put_contents($filename_log, $to_save);
+        file_put_contents($log_filename, $to_save);
     }
 
 }

@@ -5,10 +5,12 @@
 # What is it ?
 A very simple and lightweight PHP framework which allows you to easily support multi-language for your website, and to quickly deploy its functionalities with a clean code.
 
-_Actual version :_ __ed-0.3__
+_Actual version :_ __ed-0.4__
 
 # Why this one ?
-Simple architecture, easy to learn, lightweight, no need to install anything (just upload the framework files), easily support multiple languages. Available developer if there's a problem.
+Simple architecture, easy to learn, lightweight, no need to install anything (just upload the framework files), easily support multiple languages and use helpful integrated functionalities (log, notifications...).
+
+Available developer if there's a problem.
 
 Installation & documentation :
 ------------------------------
@@ -17,18 +19,17 @@ Installation & documentation :
 * [Support multi-language][2], learn how to do it.
 * See the [useful functionalities][3] that Direct integrates to speed up your development process.
 
-Notes of the version (ed-0.3) :
+Notes of the version :
 ------------------------------
-* Modified Direct.class.php so you can access the $_GET variable normally.
-* Added an easy notification system with _$Page->addInfo(string)_ or _$Page->addError(string)_ and shows them with _$Page->showNotifications()_ (documentation soon).
-* Fixed original controler for this repository (Controler/Index/indexControler.php).
-* Added a log system (use _$Page->addToLog(string $content, facultative string $title, facultative array $options);_).
-* Added a follow path system : specify a path with _$Page->setFollowPath(array $paths);_ and header to the set paths with _$Page->goFollowPath();_ ! Useful if you need to redirect the users.
-* Added several integrated functions to the framework :
-	* _(bool) $Page->isJson(string);_ so you can easily check if a JSON string is valid.
-	* _(bool) $Page->is_post(array);_ to check the existance of multiple $_POST inputs (replace _isset()_).
-	* _(bool) $Page->is_post_not_empty(array);_ to check the emptiness of multiple $_POST inputs (replace _!empty()_).
-	* _(string) $Page->getIp();_ to get the IP of the user.
+
+* Components/Router.php :
+    * Set the "router_url_parameters" option to true into Components/config.json to enjoy the following feature :
+        * Now, if you try to access an inexistant URL : for example "/index/test" and that there's no "Controler/Index/testControler.php" file, it will load "Controler/Index/indexControler.php" ("/index") and the parameter "test" will be accessible through _$_GET["path_file"]_.
+    * URL correction for root if the slash is missing.
+* Components/Direct.class.php :
+	* The logs now have a configurable max file size. Change it in Components/config.json at index "log_max_file_size" (in byte).
+	* When the max file size is reached for the last log file (saved in Components/log/), Direct.class.php creates a new file.
+	* Example of file name : 0.log.json. If max file size exceeded : creating 1.log.json, etc...
 
 [1]: https://berwick.fr/projects/directframework/documentation
 [2]: https://berwick.fr/projects/directframework/documentation/support-multi-lang
