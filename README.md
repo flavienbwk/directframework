@@ -5,7 +5,7 @@
 # What is it ?
 A very simple and lightweight PHP framework which allows you to easily support multi-language for your website, and to quickly deploy its functionalities with a clean code.
 
-_Actual version :_ __ed-0.4__
+_Actual version :_ __ed-0.5__
 
 # Why this one ?
 Simple architecture, easy to learn, lightweight, no need to install anything (just upload the framework files), easily support multiple languages and use helpful integrated functionalities (log, notifications...).
@@ -23,13 +23,9 @@ Notes of the version :
 ------------------------------
 
 * Components/Router.php :
-    * Set the "router_url_parameters" option to true into Components/config.json to enjoy the following feature :
-        * Now, if you try to access an inexistant URL : for example "/index/test" and that there's no "Controler/Index/testControler.php" file, it will load "Controler/Index/indexControler.php" ("/index") and the parameter "test" will be accessible through _$_GET["path_file"]_.
-    * URL correction for root if the slash is missing.
-* Components/Direct.class.php :
-	* The logs now have a configurable max file size. Change it in Components/config.json at index "log_max_file_size" (in byte).
-	* When the max file size is reached for the last log file (saved in Components/log/), Direct.class.php creates a new file.
-	* Example of file name : 0.log.json. If max file size exceeded : creating 1.log.json, etc...
+    * The _$_GET["parameters"]_ variable handles the parameters given in the URL.
+    i.g, f you try accessing "/account/login/8E6DF/1456", the framework will detect that the controler "Controler/Account/loginControler.php" exists and that 8E6DF and 1456 are parameters.
+    * Huge patch for the Router.
 
 [1]: https://berwick.fr/projects/directframework/documentation
 [2]: https://berwick.fr/projects/directframework/documentation/support-multi-lang
