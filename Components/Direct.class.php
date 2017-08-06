@@ -168,11 +168,7 @@ class Direct {
              * in your navbar so renderURI() can return
              * a path relative to the name of the controlers.
              */
-            if(isset($_GET["path_file"])){
-                return "../".$path;
-            }else{
-                return $path;
-            }
+            return (isset($_GET["path_raw"]))?$_GET["path_raw"].$path:"".$path;
         } else {
             $open = $path;
             $open1 = "./" . $path;
