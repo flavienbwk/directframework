@@ -2,11 +2,17 @@
 
 /*
  * Direct Framework, under MIT license.
- * ed-0.5
+ * ed-0.8
  */
+
+session_start();
 
 $no_404_file = json_decode(file_get_contents("config.json"), true);
 $no_404 = ($no_404_file["router_url_parameters"] == "true") ? true : false;
+
+if (!empty($_POST)) {
+    $_SESSION["directframework"]["post_parameters"] = $_POST;
+}
 
 if (isset($_GET["path"])) {
     $path = htmlentities(strtolower($_GET["path"]));
@@ -23,6 +29,7 @@ if (isset($_GET["path"])) {
     $path_i = "Controler/";
     $path_test = renderURI("Controler/" . ucfirst($dirs[0]) . "/");
     $path_has_parameters_questionmark = (strstr($_SERVER["REQUEST_URI"], "?")) ? true : false;
+    $_SESSION["redirected_from"] = $path_file;
     if (!$path_has_parameters_questionmark && !empty($path_file) && substr($path_file, -1) != "/") {
         header("Location:" . $_SERVER["REQUEST_URI"] . "/");
     } else {
@@ -109,16 +116,16 @@ if (isset($_GET["path"])) {
         /*
          * Computing $_GET["path_raw"] (path called).
          */
-        $path_raw="";
-        $path_raw_explode=explode("/",$_SERVER["PHP_SELF"]);
-        foreach($path_raw_explode as $pre){
-            if($pre!="Components"){
-                $path_raw.=$pre."/";
-            }else{
+        $path_raw = "";
+        $path_raw_explode = explode("/", $_SERVER["PHP_SELF"]);
+        foreach ($path_raw_explode as $pre) {
+            if ($pre != "Components") {
+                $path_raw .= $pre . "/";
+            } else {
                 break;
             }
         }
-        $_GET["path_raw"]=$path_raw;
+        $_GET["path_raw"] = $path_raw;
         require($ruri);
     }
 } else {

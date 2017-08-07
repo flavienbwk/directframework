@@ -11,7 +11,7 @@ date_default_timezone_set("Europe/Paris");
 class Direct {
 
     private $_config = array();
-    var $_session_follow_paths, $_session_notifications;
+    var $_session_follow_paths, $_session_notifications, $_session_post;
 
     public function directVersion() {
         return $this->_config["direct_version"];
@@ -34,6 +34,19 @@ class Direct {
         return (json_last_error() === JSON_ERROR_NONE);
     }
 
+    private function constructPostParameters() {
+        /*
+         * In some case, when the router performs a redirection,
+         * POST variables are not followed.
+         * This function allows the POST variable to work flowlessly.
+         */
+        
+        if(isset($this->_session_post)&&!empty($this->_session_post)){
+            $_POST=$this->_session_post;
+            unset($_SESSION["directframework"]["post_parameters"]);
+        }
+    }
+    
     private function constructGetParameters() {
         /*
          * The router doesn't forward the GET parameters.
@@ -74,6 +87,8 @@ class Direct {
             $this->raiseError("Inexistant config.json.");
         }
         $this->constructGetParameters();
+        $this->_session_post = $_SESSION["directframework"]["post_parameters"];
+        $this->constructPostParameters();
         $this->_session_follow_paths = &$_SESSION["directframework"]["follow_paths"];
         $this->_session_notifications = &$_SESSION["directframework"]["notifications"];
     }
