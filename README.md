@@ -5,7 +5,7 @@
 # What is it ?
 A very simple and lightweight PHP framework which allows you to easily support multi-language for your website, and to quickly deploy its functionalities with a clean code.
 
-_Actual version :_ __ed-0.8__
+_Actual version :_ __ed-0.9__
 
 # Why this one ?
 Simple architecture, easy to learn, lightweight, no need to install anything (just upload the framework files), easily support multiple languages and use helpful integrated functionalities (log, notifications...).
@@ -23,9 +23,11 @@ Notes of the version :
 ------------------------------
 
 * Components/Direct.class.php :
-	* Fixed $_POST not forwarded when forwarding an URL.
-* Components/Router.php :
-	* Fixed $_POST not forwarded when forwarding an URL.
+	* Fixed a warning with $_POST forwarding.
+	* Moved is_post(array) and is_post_not_empty(array) variables into Page.class.php from Direct.class.php.
+* Components/Page.class.php :
+	* Added post_variables_init(array) variable. Which automaticaly declares the POST variables as variables.
+
 
 [1]: https://berwick.fr/projects/directframework/documentation
 [2]: https://berwick.fr/projects/directframework/documentation/support-multi-lang

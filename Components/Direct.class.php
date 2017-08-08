@@ -87,7 +87,7 @@ class Direct {
             $this->raiseError("Inexistant config.json.");
         }
         $this->constructGetParameters();
-        $this->_session_post = $_SESSION["directframework"]["post_parameters"];
+        $this->_session_post = (isset($_SESSION["directframework"]["post_parameters"]))?$_SESSION["directframework"]["post_parameters"]:null;
         $this->constructPostParameters();
         $this->_session_follow_paths = &$_SESSION["directframework"]["follow_paths"];
         $this->_session_notifications = &$_SESSION["directframework"]["notifications"];
@@ -208,24 +208,6 @@ class Direct {
                 return false;
             }
         }
-    }
-
-    public function is_post(array $array) {
-        foreach ($array as $arr) {
-            if (!isset($_POST[$arr])) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public function is_post_not_empty(array $array) {
-        foreach ($array as $arr) {
-            if (empty($_POST[$arr])) {
-                return false;
-            }
-        }
-        return true;
     }
 
     public function setFollowPath($path, $overwrite_all_last_path = false) {

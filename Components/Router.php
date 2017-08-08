@@ -2,7 +2,7 @@
 
 /*
  * Direct Framework, under MIT license.
- * ed-0.8
+ * ed-0.9
  */
 
 session_start();
