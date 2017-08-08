@@ -24,9 +24,9 @@ Notes of the version :
 
 * Components/Direct.class.php :
 	* Fixed a warning with $_POST forwarding.
-	* Moved is_post(array) and is_post_not_empty(array) variables into Page.class.php from Direct.class.php.
+	* Moved is_post(array) and is_post_not_empty(array) functions into Page.class.php from Direct.class.php.
 * Components/Page.class.php :
-	* Added post_variables_init(array) variable. Which automaticaly declares the POST variables as variables.
+	* Added post_variables_init(array) function. Which automaticaly declares the POST variables as variables.
 
 
 [1]: https://berwick.fr/projects/directframework/documentation
