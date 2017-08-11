@@ -5,7 +5,7 @@
  * always-available Direct class!
  * 
  */
-session_start();
+@session_start();
 date_default_timezone_set("Europe/Paris");
 
 class Direct {
@@ -40,13 +40,13 @@ class Direct {
          * POST variables are not followed.
          * This function allows the POST variable to work flowlessly.
          */
-        
-        if(isset($this->_session_post)&&!empty($this->_session_post)){
-            $_POST=$this->_session_post;
+
+        if (isset($this->_session_post) && !empty($this->_session_post)) {
+            $_POST = $this->_session_post;
             unset($_SESSION["directframework"]["post_parameters"]);
         }
     }
-    
+
     private function constructGetParameters() {
         /*
          * The router doesn't forward the GET parameters.
@@ -87,7 +87,7 @@ class Direct {
             $this->raiseError("Inexistant config.json.");
         }
         $this->constructGetParameters();
-        $this->_session_post = (isset($_SESSION["directframework"]["post_parameters"]))?$_SESSION["directframework"]["post_parameters"]:null;
+        $this->_session_post = (isset($_SESSION["directframework"]["post_parameters"])) ? $_SESSION["directframework"]["post_parameters"] : null;
         $this->constructPostParameters();
         $this->_session_follow_paths = &$_SESSION["directframework"]["follow_paths"];
         $this->_session_notifications = &$_SESSION["directframework"]["notifications"];
@@ -183,7 +183,7 @@ class Direct {
              * in your navbar so renderURI() can return
              * a path relative to the name of the controlers.
              */
-            return (isset($_GET["path_raw"]))?$_GET["path_raw"].$path:"".$path;
+            return (isset($_GET["path_raw"])) ? $_GET["path_raw"] . $path : "" . $path;
         } else {
             $open = $path;
             $open1 = "./" . $path;
@@ -237,88 +237,103 @@ class Direct {
     }
 
     public function addToLog($content, $title = "", array $options = array()) {
-        /*
-         * Path of the file in wich is saved the log.
-         */
-        $to_save = array();
-        $path = dirname(__FILE__) . "/log/";
-        $log_max_file_size = intval($this->getConfigVar("log_max_file_size"));
-        $log_file_number = 0;
-        $file_list = array_diff(scandir($path), array('.', '..'));
 
-        if (sizeof($file_list) == 0) {
-            $log_file_number = 0;
-        } else {
-            $log_last_file = $file_list[sizeof($file_list) + 2 - 1];
-            $log_last_file_number = explode(".", $log_last_file);
-            $log_last_file_number = intval($log_last_file_number[0]);
-            if (filesize($path . $log_last_file) >= $log_max_file_size) {
-                $log_file_number = $log_last_file_number + 1;
-            } else {
-                $log_file_number = $log_last_file_number;
+        if ($this->getConfigVar("log_disable") == "yes") {
+            /*
+             * Path of the file in wich is saved the log.
+             */
+            $to_save = array();
+            $path = dirname(__FILE__) . "/log/";
+            /*
+             * Checking log directory presence.
+             */
+            if (!file_exists($path)) {
+                mkdir($path, 0700);
             }
-        }
-        $log_filename = $path . $log_file_number . ".log.json";
+            $log_max_file_size = intval($this->getConfigVar("log_max_file_size"));
+            $log_file_number = 0;
+            $file_list = array_diff(scandir($path), array('.', '..'));
 
-        if (!empty($title)) {
-            /*
-             * If the title is set with a pre_filled key from the array below,
-             * it is replaced automatically so you can gain time.
-             * 
-             * You can add a description to each pre_filled title.
-             * Followings are examples.
-             */
-            $pre_filled_array = array(
-                "INTERNAL_SCRIPT" => "", // To debug a script.
-                "LOGGED_IN" => "User logged in.",
-                "LOGGED_OUT" => "User logged out.",
-                "ACCESS_DENIED" => ""
-            );
-            $title = strtr($title, $pre_filled_array);
-        }
-        $to_save["title"] = $title;
-
-        if (!empty($options)) {
-            /*
-             * Useful complements added in the end of the sentence.
-             * In the $options_str variable.
-             */
-
-            $dbt = debug_backtrace();
-            $to_save["options"] = array();
-            $pre_filled_array = array(
-                "backtrace" => $dbt[0]["args"][0], // File from where is called addToLog().
-                "user" => (isset($_SESSION["user"]["ids"])) ? $_SESSION["user"]["ids"] : "Unknwown", // User ids or unknown if not logged in.
-                "ip" => $this->getIp() // Get user IP.
-            );
-            foreach ($options as $option) {
-                if (isset($pre_filled_array[$option])) {
-                    array_push($to_save["options"], array(
-                        "f_name" => $option,
-                        "content" => (empty($pre_filled_array[$option])) ? "" : $pre_filled_array[$option]
-                    ));
+            if (sizeof($file_list) == 0) {
+                $log_file_number = 0;
+            } else {
+                $log_last_file = $file_list[sizeof($file_list) + 2 - 1];
+                $log_last_file_number = explode(".", $log_last_file);
+                $log_last_file_number = intval($log_last_file_number[0]);
+                if (filesize($path . $log_last_file) >= $log_max_file_size) {
+                    $log_file_number = $log_last_file_number + 1;
+                } else {
+                    $log_file_number = $log_last_file_number;
                 }
             }
-        }
+            $log_filename = $path . $log_file_number . ".log.json";
 
-        $time = time();
-        $to_save["content"] = $content;
-        $to_save["date"] = date("H:i d/m/Y", $time);
-        $to_save["timestamp"] = $time;
+            if (!empty($title)) {
+                /*
+                 * If the title is set with a pre_filled key from the array below,
+                 * it is replaced automatically so you can gain time.
+                 * 
+                 * You can add a description to each pre_filled title.
+                 * Followings are examples.
+                 */
+                $pre_filled_array = array(
+                    "INTERNAL_SCRIPT" => "", // To debug a script.
+                    "LOGGED_IN" => "User logged in.",
+                    "LOGGED_OUT" => "User logged out.",
+                    "ACCESS_DENIED" => ""
+                );
+                $title = strtr($title, $pre_filled_array);
+            }
+            $to_save["title"] = $title;
 
-        if (file_exists($log_filename)) {
-            $fc = file_get_contents($log_filename);
-            if (!empty($fc) && $fc != "null" && $this->isJson($fc)) {
-                $fc = json_decode($fc, true);
-                array_push($fc, $to_save);
-                $to_save = json_encode($fc);
+            if (!empty($options)) {
+                /*
+                 * Useful complements added in the end of the sentence.
+                 * In the $options_str variable.
+                 * 
+                 * You can insert custom informations using $options["blabla"]=blabla;
+                 */
+
+                $dbt = debug_backtrace();
+                $to_save["options"] = array();
+                $pre_filled_array = array(
+                    "backtrace" => $dbt[0]["args"][0], // File from where is called addToLog().
+                    "ip" => $this->getIp() // Get user IP.
+                );
+                foreach ($options as $option=>$val) {
+                    if (isset($pre_filled_array[$option])&&is_int($option)) {
+                        array_push($to_save["options"], array(
+                            "f_name" => $option,
+                            "content" => (empty($pre_filled_array[$option])) ? "" : $pre_filled_array[$option]
+                        ));
+                    }else{
+                        array_push($to_save["options"],array(
+                           "f_name"=>$option,
+                            "content"=>$val
+                        ));
+                    }
+                }
+            }
+
+            $time = time();
+            $to_save["content"] = $content;
+            $to_save["date"] = date("H:i d/m/Y", $time);
+            $to_save["timestamp"] = $time;
+
+            if (file_exists($log_filename)) {
+                $fc = file_get_contents($log_filename);
+                if (!empty($fc) && $fc != "null" && $this->isJson($fc)) {
+                    $fc = json_decode($fc, true);
+                    array_push($fc, $to_save);
+                    $to_save = json_encode($fc);
+                } else {
+                    $to_save = json_encode(array(0 => $to_save));
+                }
             } else {
                 $to_save = json_encode(array(0 => $to_save));
             }
-        } else {
-            $to_save = json_encode(array(0 => $to_save));
+            file_put_contents($log_filename, $to_save);
         }
-        file_put_contents($log_filename, $to_save);
     }
 
 }

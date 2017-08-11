@@ -2,9 +2,8 @@
 
 /*
  * Direct Framework, under MIT license.
- * ed-0.9
+ * ed-0.10
  */
-
 session_start();
 
 $no_404_file = json_decode(file_get_contents("config.json"), true);
@@ -29,7 +28,6 @@ if (isset($_GET["path"])) {
     $path_i = "Controler/";
     $path_test = renderURI("Controler/" . ucfirst($dirs[0]) . "/");
     $path_has_parameters_questionmark = (strstr($_SERVER["REQUEST_URI"], "?")) ? true : false;
-    $_SESSION["redirected_from"] = $path_file;
     if (!$path_has_parameters_questionmark && !empty($path_file) && substr($path_file, -1) != "/") {
         header("Location:" . $_SERVER["REQUEST_URI"] . "/");
     } else {

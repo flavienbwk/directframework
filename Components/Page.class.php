@@ -106,7 +106,7 @@ class Page extends Direct {
         return $this->_language;
     }
 
-    public function is_post(array $array): bool {
+    public function is_post(array $array) {
         foreach ($array as $arr) {
             if (!isset($_POST[$arr])) {
                 return false;
@@ -115,7 +115,7 @@ class Page extends Direct {
         return true;
     }
 
-    public function is_post_not_empty(array $array): bool {
+    public function is_post_not_empty(array $array) {
         /*
          * Replace the isset() function.
          * Checks if the array variables are existing
