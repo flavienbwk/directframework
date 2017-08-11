@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="jumbotron main-jumbotron">
-                    <h1>Built to gain <b>time</b>.</h1>
+                    <h1>Built to save <b>time</b>.</h1>
                     <p>
                         Direct is the PHP framework you need. 
                         Using the MVC architecture, it is created to allow you to deploy easily and quickly a website a proper way and with the support of multiple languages.
@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <center>
-                    <div class="label label-info">Last version : ed-0.1</div>
+                    <div class="label label-info">Last version : ed-0.10</div>
                 </center>
             </div>
         </div>
@@ -72,8 +72,9 @@
                 <ul>
                     <li><a href="./documentation#download">Downloading & installing</a></li>
                     <li><a href="./documentation#architecture">Architecture & nomenclature</a></li>
-                    <li>Classic functionalities</li>
                     <li><a href="./documentation/support-multi-lang">Multi-language</a></li>
+                    <li><a href="./functionalities/page">Useful functionalities</a></li>
+                    <li title="Gain time!">Modules class</li>
                 </ul>
             </div>
             <div class="col-lg-6">

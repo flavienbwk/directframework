@@ -10,7 +10,7 @@
 require(dirname(__FILE__)."/../../Components/Page.class.php");
 $Page = new Page();
 $Page->setLanguage("en"); // Facultative. 
-$Page->setTitle($Page->getString("title_documentation","Index.index.json")." - ",true);
+$Page->setTitle("Useful functionalities - ",true);
 
 /*
  * Models
@@ -25,6 +25,6 @@ $FooterModel = new footerModel();
 /*
  * Views
  */
-require($Page->renderURI("View/Documentation/headerView.php"));
-require($Page->renderURI("View/Documentation/indexView.php"));
+require($Page->renderURI("View/Index/headerView.php"));
+require($Page->renderURI("View/Functionalities/pageView.php"));
 require($Page->renderURI("View/Index/footerView.php"));

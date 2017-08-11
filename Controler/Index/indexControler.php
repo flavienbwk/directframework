@@ -10,7 +10,7 @@
 require(dirname(__FILE__)."/../../Components/Page.class.php");
 $Page = new Page();
 $Page->setLanguage("en"); // Facultative. 
-$Page->setTitle(" - ".$Page->getString("welcome"),true);
+$Page->setTitle($Page->getString("welcome")." - ",true);
 
 /*
  * Models

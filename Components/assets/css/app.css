@@ -1,5 +1,4 @@
 /* 
-    Created on : 24 juin 2017, 23:28:33
     The CSS of Direct Framework.
     Your CSS must be in the main.css file or another file than this one.
 */
@@ -14,13 +13,30 @@
     padding:10px;
 }
 
-.direct-error-frame error-title{
-    padding:10px;
+.direct-error-frame .error-title{
     display:inline-block;
-    font-weight:500;
+    font-weight:600;
 }
 
-.direct-error-frame error-content{
+.direct-error-frame .error-content{
     display:inline-block;
+}
+
+.direct-info-frame{
+    text-align:center;
+    background-color: #e3dede;
+    color: black;
+    width: 100%;
+    border: 2px solid #44caff;
+    font-family:monospace;
     padding:10px;
+}
+
+.direct-info-frame .info-title{
+    display:inline-block;
+    font-weight:600;
+}
+
+.direct-info-frame .info-content{
+    display:inline-block;
 }

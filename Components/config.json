@@ -3,5 +3,9 @@
     "app_version":"your_app_version",
     "project_title":"Direct Framework Documentation",
     "website_title":"Direct Framework",
-    "default_language":"en"
+    "default_language":"en",
+    "active_notifications":"yes",
+    "log_disable":"no",
+    "log_max_file_size":"4096",
+    "router_url_parameters":"true"
 }

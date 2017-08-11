@@ -5,7 +5,7 @@ include("Direct.class.php");
 /**
  * Description of the Page class.
  * This class manage the important functions of the framework
- * related to the 
+ * related to the treatment of the page.
  * 
  */
 class Page extends Direct {
@@ -17,13 +17,15 @@ class Page extends Direct {
         $this->_page_title = $this->getConfigVar("project_title");
         $this->setTitle($this->getConfigVar("project_title"));
         $this->setLanguage("en");
+
+        $this->goFollowPath(); // Facultative.
     }
 
     public function setLanguage($language) {
         if (file_exists(dirname(__FILE__) . "/langs/" . $language . "/")) {
             $this->_language = $language;
         } else {
-            $this->raiseError("Inexistant language. Not found under langs/<b>$language</b>. Replaced with english (en).");
+            $this->raiseError("Inexistant language. Not found under Components/langs/<b>$language</b>. Replaced with english (en).");
         }
     }
 
@@ -72,7 +74,7 @@ class Page extends Direct {
                 return false;
             }
         } else {
-            $this->raiseError("Inexistant traduction file (" . $path . ").");
+            $this->raiseError("Inexistant traduction file (" . $this->_language . "/" . $file . ").");
             exit();
         }
     }
@@ -85,7 +87,7 @@ class Page extends Direct {
 
         if (!empty($title)) {
             if ($overwrite) {
-                $this->_page_title .= $title;
+                $this->_page_title = $title . $this->_page_title;
             } else {
                 $this->_page_title = $title;
             }
@@ -102,6 +104,77 @@ class Page extends Direct {
 
     public function getLanguage() {
         return $this->_language;
+    }
+
+    public function is_post(array $array) {
+        foreach ($array as $arr) {
+            if (!isset($_POST[$arr])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function is_post_not_empty(array $array) {
+        /*
+         * Replace the isset() function.
+         * Checks if the array variables are existing
+         * in the $_POST variable.
+         */
+        foreach ($array as $arr) {
+            if (isset($_POST[$arr]) && empty($_POST[$arr])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function post_variables_init(array $array, $config) {
+        /*
+         * Automaticaly declares the POST variables as variables
+         * of the same name, provided in $array.
+         * If $_POST["test"] is an existing variable,
+         * and $array = array("test"),
+         * $test will be initialized.
+         * 
+         * Be careful, any variable having the same name than
+         * those who are in the $array will be overwrited in your program.
+         */
+
+        if (isset($config) && !empty($config)) {
+            if ($config === true) {
+                foreach ($array as $name) {
+                    $GLOBALS[$name] = htmlentities($_POST[$name]);
+                }
+            } else {
+                for ($i = 0; $i < sizeof($array); $i++) {
+                    if (isset($config[$i])) {
+                        if (empty($config[$i])) {
+                            $GLOBALS[$array[$i]] = $_POST[$array[$i]];
+                        } else if (strtoupper($config[$i]) == "HTMLENTITIES" || strtoupper($config[$i]) == "HE") {
+                            $GLOBALS[$array[$i]] = htmlentities($_POST[$array[$i]]);
+                        } else if (strtoupper(substr($config[$i], 0, 4)) == "SHA1") {
+                            if (strtoupper($config[$i]) == "SHA1") {
+                                // Classic sha1 treatment.
+                                $GLOBALS[$array[$i]] = sha1($_POST[$array[$i]]);
+                            } else {
+                                // Adding a salt.
+                                $salt = substr($config[$i],4);
+                                $GLOBALS[$array[$i]] = sha1($_POST[$array[$i]] . $salt);
+                            }
+                        } else {
+                            $GLOBALS[$array[$i]] = $_POST[$array[$i]];
+                        }
+                    } else {
+                        $GLOBALS[$name] = $_POST[$name];
+                    }
+                }
+            }
+        } else {
+            foreach ($array as $name) {
+                $GLOBALS[$name] = $_POST[$name];
+            }
+        }
     }
 
 }

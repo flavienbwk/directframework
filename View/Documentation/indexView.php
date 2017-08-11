@@ -14,7 +14,7 @@
                         <br/>
                         No configuration needed relative to the server. Direct uses relative paths.
                         <br/>
-                        So you can just upload the files of the framwork on your server.
+                        So you can just upload the files of the framework on your server.
                     </p>
                 </center>
             </div>

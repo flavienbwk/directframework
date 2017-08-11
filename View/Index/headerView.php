@@ -1,6 +1,11 @@
 <html lang="<?= $Page->getLanguage(); ?>">
     <head>
         <title><?= $Page->getTitle(); ?></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="keywords" content="simple framework php, multi-language support"/>
+        <meta name="author" content="Flavien Berwick"/>
+        <meta name="description" content="A very simple and lightweight PHP framework built to save you time by deploying quickly your ideas with a clean code."/>
         <?php
         foreach ($HeaderModel->getCSS_URI() as $ressource) {
             echo $ressource . "\n";
