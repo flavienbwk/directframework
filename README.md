@@ -5,12 +5,20 @@
 <p>
 
 # What is it ?
-A very simple and lightweight PHP framework which allows you to easily support multi-language for your website, and to quickly deploy its functionalities with a clean code.
+A very simple and lightweight PHP framework built to save you time by deploying quickly your ideas with a clean code.
 
-_Actual version :_ __ed-0.1__
+_Actual version :_ __ed-0.10__
 
 # Why this one ?
-Simple architecture, easy to learn, lightweight, no need to install anything (just upload the framework files), easily support multiple languages. Available developer if there's a problem.
+Simple architecture, easy to learn, lightweight, no need to install anything (just upload the framework files), easily support multiple languages and helpful built-in functionalities (log, notifications...).
+
+Available developer if there's a problem.
+
+Notes of the version :
+----------------------
+* Updated Direct Framework functions from version ed-0.1 to version ed-0.10.
+* Added the useful functionalities documentation.
+* Updated style contents.
 
 Installation & documentation :
 ------------------------------
@@ -21,4 +29,4 @@ Installation & documentation :
 
 [1]: https://berwick.fr/projects/directframework/documentation
 [2]: https://berwick.fr/projects/directframework/documentation/support-multi-lang
-[3]: #
+[3]: https://berwick.fr/projects/directframework/functionalities/page/
