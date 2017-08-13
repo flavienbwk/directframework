@@ -335,5 +335,11 @@ class Direct {
             file_put_contents($log_filename, $to_save);
         }
     }
+    
+    public function forceShowPHPErrors(){
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
+    }
 
 }

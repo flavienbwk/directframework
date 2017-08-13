@@ -5,7 +5,7 @@
 # What is it ?
 A very simple and lightweight PHP framework built to save you time by deploying quickly your ideas with a clean code.
 
-_Actual version :_ __ed-0.10__
+_Actual version :_ __beta-0.1__
 
 # Why this one ?
 Simple architecture, easy to learn, lightweight, no need to install anything (just upload the framework files), easily support multiple languages and helpful built-in functionalities (log, notifications...).
@@ -21,18 +21,11 @@ Installation & documentation :
 
 Notes of the version :
 ------------------------------
-
-* Components/config.json :
-	* Added the possibility to disable the logs via the "log_disable" option.
+* BETA VERSION RELEASED : now even more easier, reliable and time-saving.
 * Components/Direct.class.php :
-	* Fixed session already started.
-	* Fixed error when the log directory doesn't exist.
-	* Added possibility to create custom informations in logs. Example : $Page->addToLog($my_content,$my_title,array("my_custom_information"=>"Hey what's up ?"));
-* Components/assets/css/app.css :
-	* Fixed bold titles for notifications.
-* Documentation :
-	* Added the useful functionalities.
-* Modified description.
+	* Added $Page->forceShowPHPErrors(); to force PHP to show potentially hidden errors. (Useful if you get an error 500 and don't know from where it comes from).
+* Components/Router.php :
+	* Added Autoloader.class.php so the Page class is automatically included, and it will be possible to autoload custom class.
 
 
 [1]: https://berwick.fr/projects/directframework/documentation

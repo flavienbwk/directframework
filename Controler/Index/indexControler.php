@@ -8,7 +8,7 @@
  * Direct functions
  * DO NOT REMOVE
  */
-require(dirname(__FILE__)."/../../Components/Page.class.php");
+// Autoloader automatically includes the Page class.
 $Page = new Page();
 
 /*

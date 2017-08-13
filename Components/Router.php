@@ -2,10 +2,20 @@
 
 /*
  * Direct Framework, under MIT license.
- * ed-0.10
+ * beta-0.1
+ * Middleware Router : manage the inclusion and the URI.
  */
 session_start();
 
+/*
+ * Autoloading the classes.
+ */
+require("Autoloader.class.php");
+Autoloader::register();
+
+/*
+ * Extracting config.json parameters.
+ */
 $no_404_file = json_decode(file_get_contents("config.json"), true);
 $no_404 = ($no_404_file["router_url_parameters"] == "true") ? true : false;
 
@@ -124,6 +134,7 @@ if (isset($_GET["path"])) {
             }
         }
         $_GET["path_raw"] = $path_raw;
+        
         require($ruri);
     }
 } else {
