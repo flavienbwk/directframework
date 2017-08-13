@@ -2,7 +2,7 @@
 
 /*
  * Direct Framework, under MIT license.
- * beta-0.1
+ * beta-0.2
  * Middleware Router : manage the inclusion and the URI.
  */
 session_start();
@@ -12,7 +12,6 @@ session_start();
  */
 require("Autoloader.class.php");
 Autoloader::register();
-
 /*
  * Extracting config.json parameters.
  */
@@ -23,7 +22,11 @@ if (!empty($_POST)) {
     $_SESSION["directframework"]["post_parameters"] = $_POST;
 }
 
-if (isset($_GET["path"])) {
+if(isset($_GET["index"])){
+    if(file_exists("../Controler/Index/indexControler.php")){
+        require("../Controler/Index/indexControler.php");
+    }
+}else if (isset($_GET["path"])) {
     $path = htmlentities(strtolower($_GET["path"]));
     $path_i = "Controler/" . ucfirst($path) . "/indexControler.php";
     if (file_exists(renderURI($path_i))) {

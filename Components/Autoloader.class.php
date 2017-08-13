@@ -2,7 +2,7 @@
 
 /*
  * Direct Framework, under MIT license.
- * beta-0.1
+ * beta-0.2
  * Automaticaly instanciate the Page class and other libraries if requested. 
  */
 
