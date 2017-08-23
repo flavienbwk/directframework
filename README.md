@@ -5,7 +5,7 @@
 # What is it ?
 A very simple and lightweight PHP framework built to save you time by deploying quickly your ideas with a clean code.
 
-_Actual version :_ __beta-0.2__
+_Actual version :_ __beta-0.3__
 
 # Why this one ?
 Simple architecture, easy to learn, lightweight, no need to install anything (just upload the framework files), easily support multiple languages and helpful built-in functionalities (log, notifications...).
@@ -21,8 +21,8 @@ Installation & documentation :
 
 Notes of the version :
 ------------------------------
-* Important corrective in Router.php for the root directory.
-
+* Fixed missing assets file extensions in .htaccess. Now, even if the extension is uppercase, it can be accessed.
+* Added possibility to include a ressource (CSS or JS) easily and properly with the $Page->addRessource(array(array($link,"css"),array($link,"js")[...])); function. Get them with $Page->getRessource("css") for css or $Page->getRessource("js") for JS; these functions will generate the appropriate tags to include the links.
 
 [1]: https://berwick.fr/projects/directframework/documentation
 [2]: https://berwick.fr/projects/directframework/documentation/support-multi-lang

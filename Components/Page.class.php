@@ -10,7 +10,7 @@ include("Direct.class.php");
  */
 class Page extends Direct {
 
-    private $_page_title, $_language;
+    private $_page_title, $_language,$_ressources_css=[],$_ressources_js=[];
 
     public function __construct() {
         parent::__construct();
@@ -174,6 +174,60 @@ class Page extends Direct {
             foreach ($array as $name) {
                 $GLOBALS[$name] = $_POST[$name];
             }
+        }
+    }
+
+    public function addRessource(array $array) {
+        $array=array($array);
+        for ($i = 0; $i < sizeof($array); $i++) {
+            if ($array[$i][1] == "css") {
+                array_push($this->_ressources_css, $array[$i][0]);
+            } else if ($array[$i][1] == "js") {
+                array_push($this->_ressources_js, $array[$i][0]);
+            } else {
+                array_push($this->_ressources_css, $array[$i][0]);
+            }
+        }
+    }
+
+    /**
+    * $type is whether "css" or "js".
+    */
+    public function getRessource(string $type){
+        $concatenated="";
+        if($type=="css"){
+            foreach($this->_ressources_css as $ressource){
+                $concatenated.="<link rel=\"stylesheet\" href=\"".$ressource."\"/>\n";
+            }
+        }else if($type=="js"){
+            foreach($this->_ressources_js as $ressource){
+                $concatenated.="<script src=\"".$ressource."\"/></script>\n";
+            }
+        }else{
+            return false;
+        }
+        return ($concatenated==="")?false:$concatenated;
+    }
+
+    /**
+     * Returns true or false if ressource variable is not empty for $type.
+     * $type is whether "css" or "js".
+     */
+    public function isRessource(string $type) {
+        if ($type == "css") {
+            if (!empty($this->_ressources_css)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else if ($type == "js") {
+            if (!empty($this->_ressources_js)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
         }
     }
 
