@@ -2,7 +2,7 @@
 
 /*
  * Direct Framework, under MIT license.
- * beta-0.3
+ * beta-0.3.1
  * Middleware Router : manage the inclusion and the URI.
  */
 session_start();
