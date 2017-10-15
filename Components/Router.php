@@ -2,7 +2,7 @@
 
 /*
  * Direct Framework, under MIT license.
- * beta-0.3.2
+ * beta-0.3.3
  * Middleware Router : manage the inclusion and the URI.
  */
 session_start();
@@ -12,6 +12,9 @@ session_start();
  */
 require("Autoloader.class.php");
 Autoloader::register();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 /*
  * Extracting config.json parameters.
  */
@@ -22,14 +25,14 @@ if (!empty($_POST)) {
     $_SESSION["directframework"]["post_parameters"] = $_POST;
 }
 
-if(isset($_GET["index"])){
-    if(file_exists("../Controler/Index/indexControler.php")){
+if (isset($_GET["index"])) {
+    if (@file_exists("../Controler/Index/indexControler.php")) {
         require("../Controler/Index/indexControler.php");
     }
-}else if (isset($_GET["path"])) {
+} else if (isset($_GET["path"])) {
     $path = htmlentities(strtolower($_GET["path"]));
     $path_i = "Controler/" . ucfirst($path) . "/indexControler.php";
-    if (file_exists(renderURI($path_i))) {
+    if (@file_exists(renderURI($path_i))) {
         require(renderURI($path_i));
     } else {
         header("Location:" . $_SERVER["REQUEST_URI"] . "/");
@@ -137,7 +140,7 @@ if(isset($_GET["index"])){
             }
         }
         $_GET["path_raw"] = $path_raw;
-        
+
         require($ruri);
     }
 } else {
@@ -155,18 +158,18 @@ function renderURI($path) {
     $open2 = "../" . $path;
     $open3 = "./../" . $path;
     $open4 = "../../" . $path;
-    if (file_exists($open)) {
+    if (@file_exists($open)) {
         return $path;
-    } else if (file_exists($open1)) {
+    } else if (@file_exists($open1)) {
         $path = $open1;
         return $path;
-    } else if (file_exists($open2)) {
+    } else if (@file_exists($open2)) {
         $path = $open2;
         return $path;
-    } else if (file_exists($open3)) {
+    } else if (@file_exists($open3)) {
         $path = $open3;
         return $path;
-    } else if (file_exists($open4)) {
+    } else if (@file_exists($open4)) {
         $path = $open4;
         return $path;
     } else {
