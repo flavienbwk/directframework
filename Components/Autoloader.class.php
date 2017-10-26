@@ -2,7 +2,6 @@
 
 /*
  * Direct Framework, under MIT license.
- * beta-0.4
  * Automatically includes all classes present in /Model and /Components/modules.
  */
 
@@ -19,8 +18,7 @@ class Autoloader {
         $included = false;
 
         if (file_exists("../Components/modules")) {
-            $directories_modules = $this->getDirectoriesRecursively("../Components/modules");
-            $included = $this->requireFile($directories_modules, $class_name);
+            $included = $this->requireFile(["../Components/modules"], $class_name);
         }
 
         if (file_exists("../Model") && !$included) {

@@ -8,6 +8,7 @@ include("Direct.class.php");
  * related to the treatment of the page.
  * 
  */
+
 class Page extends Direct {
 
     private $_page_title, $_language,$_ressources_css=[],$_ressources_js=[];
