@@ -5,10 +5,10 @@
 # What is it ?
 A very simple and lightweight PHP framework built to save you time by deploying quickly your ideas with a clean code.
 
-Actual version : __beta-0.3.3__
+Actual version : __beta-0.4__
 
 # Why this one ?
-Simple architecture, easy to learn, lightweight, no need to install anything (just upload the framework files), easily support multiple languages and features helpful built-in functionalities (log, notifications...).
+Simple MVC architecture, easy to learn, lightweight, no need to install anything (just upload the framework files), easily support multiple languages and features helpful built-in functionalities (log, notifications...).
 
 Available developer if there's a problem.
 
@@ -21,7 +21,8 @@ Installation & documentation :
 
 Notes of the version :
 ------------------------------
-* Fixed an error in the Router.
+* Now, the autoloader automatically includes all classes present in /Model and /Components/modules.
+* Removed date default time zone.
 
 [1]: https://berwick.fr/projects/directframework/documentation
 [2]: https://berwick.fr/projects/directframework/documentation/support-multi-lang
