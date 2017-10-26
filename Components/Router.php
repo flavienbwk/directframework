@@ -11,7 +11,13 @@ session_start();
  * Autoloading the classes.
  */
 require("Autoloader.class.php");
-Autoloader::register();
+require("Page.class.php");
+$Autoloader = new Autoloader;
+
+/*
+ * Setting PHP so it displays all errors.
+ * You can remove this part.
+ */
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
