@@ -1,16 +1,13 @@
 # Direct Framework - Under MIT license
-# The following lines are critical for the good working of the
-framework.
+# The following lines are critical for the good working of the framework.
 # Please do not remove any!
 
 # This is the alternative .htaccess file.
-# You might need it if you don't host the framework on a shared hosting
-plan.
+# You might need it if you don't host the framework on a shared hosting plan.
 
 Options +FollowSymlinks
 RewriteEngine On
-RewriteRule assets((/(.*)[.]([a-zA-Z]){1,4}){1,}) Components/assets$1
-[L]
+RewriteRule assets((/(.*)[.]([a-zA-Z]){1,4}){1,}) Components/assets$1 [L]
 # Allows to create clear links.
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ((.*)/){1,}(.*)
@@ -19,8 +16,7 @@ Components/Router.php?path_dir=$1&path_file=$3 [L]
 # Used for index folders
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule (([A-Z]|[a-z]|[0-9])+){1,} Components/Router.php?path=$1 [L]
-# RewriteRule (([A-Z]|[a-z]|[0-9])+){1,} Components/Router.php?path=$1
-[L]
+# RewriteRule (([A-Z]|[a-z]|[0-9])+){1,} Components/Router.php?path=$1 [L]
 # Replace the index.php file.
 RewriteRule ^$ Components/Router.php?index [L]
 
