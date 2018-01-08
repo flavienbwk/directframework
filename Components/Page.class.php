@@ -8,10 +8,9 @@ include("Direct.class.php");
  * related to the treatment of the page.
  * 
  */
-
 class Page extends Direct {
 
-    private $_page_title, $_language,$_ressources_css=[],$_ressources_js=[];
+    private $_page_title, $_language, $_ressources_css = [], $_ressources_js = [];
 
     public function __construct() {
         parent::__construct();
@@ -43,30 +42,28 @@ class Page extends Direct {
          * Form : FolderFilename.json
          * Example : IndexIndex.json
          */
-
         if ($language && !empty($language)) {
             $this->setLanguage($language);
         }
-
         if ($file === false) {
             $backtrace = debug_backtrace();
             $backtrace = explode("/", $backtrace[0]["file"]);
             $backtrace_file = $backtrace[sizeof($backtrace) - 1];
             if (substr($backtrace_file, -8) == "View.php") {
                 $backtrace_file = substr($backtrace_file, 0, -8);
-            } else if (substr($backtrace_file, -13) == "Controller.php") {
-                $backtrace_file = substr($backtrace_file, 0, -13);
+            } else if (substr($backtrace_file, -14) == "Controller.php") {
+                $backtrace_file = substr($backtrace_file, 0, -14);
             } else if (substr($backtrace_file, -9) == "Model.php") {
                 $backtrace_file = substr($backtrace_file, 0, -9);
             } else {
-                $this->raiseError("Impossible to get the backtrace. (" . $var . ", for " . $backtrace_file . ", " . substr($backtrace_file, -8) . ")");
+                echo $this->raiseError("Impossible to get the backtrace. (" . $var . ", for " . $backtrace_file . ", " . substr($backtrace_file, -8) . ")");
                 exit();
             }
             $backtrace_folder = $backtrace[sizeof($backtrace) - 2];
             $file = $backtrace_folder . "." . $backtrace_file . ".json";
         }
-
         $path = dirname(__FILE__) . "/langs/" . $this->_language . "/" . $file;
+
         if (file_exists($path)) {
             $data = json_decode(file_get_contents($path), true);
             if (isset($data[$var])) {
@@ -75,7 +72,7 @@ class Page extends Direct {
                 return false;
             }
         } else {
-            $this->raiseError("Inexistant traduction file (" . $this->_language . "/" . $file . ").");
+            echo $this->raiseError("Inexistant traduction file (" . $this->_language . "/" . $file . ").");
             exit();
         }
     }
@@ -160,7 +157,7 @@ class Page extends Direct {
                                 $GLOBALS[$array[$i]] = sha1($_POST[$array[$i]]);
                             } else {
                                 // Adding a salt.
-                                $salt = substr($config[$i],4);
+                                $salt = substr($config[$i], 4);
                                 $GLOBALS[$array[$i]] = sha1($_POST[$array[$i]] . $salt);
                             }
                         } else {
@@ -179,7 +176,7 @@ class Page extends Direct {
     }
 
     public function addRessource(array $array) {
-        $array=array($array);
+        $array = array($array);
         for ($i = 0; $i < sizeof($array); $i++) {
             if ($array[$i][1] == "css") {
                 array_push($this->_ressources_css, $array[$i][0]);
@@ -192,22 +189,22 @@ class Page extends Direct {
     }
 
     /**
-    * $type is whether "css" or "js".
-    */
-    public function getRessource($type){
-        $concatenated="";
-        if($type=="css"){
-            foreach($this->_ressources_css as $ressource){
-                $concatenated.="<link rel=\"stylesheet\" href=\"".$ressource."\"/>\n";
+     * $type is whether "css" or "js".
+     */
+    public function getRessource($type) {
+        $concatenated = "";
+        if ($type == "css") {
+            foreach ($this->_ressources_css as $ressource) {
+                $concatenated .= "<link rel=\"stylesheet\" href=\"" . $ressource . "\"/>\n";
             }
-        }else if($type=="js"){
-            foreach($this->_ressources_js as $ressource){
-                $concatenated.="<script src=\"".$ressource."\"/></script>\n";
+        } else if ($type == "js") {
+            foreach ($this->_ressources_js as $ressource) {
+                $concatenated .= "<script src=\"" . $ressource . "\"/></script>\n";
             }
-        }else{
+        } else {
             return false;
         }
-        return ($concatenated==="")?false:$concatenated;
+        return ($concatenated === "") ? false : $concatenated;
     }
 
     /**

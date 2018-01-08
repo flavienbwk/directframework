@@ -5,7 +5,7 @@
 # What is it ?
 A very simple and lightweight PHP framework built to save you time by deploying quickly your ideas with a clean code.
 
-Actual version : __beta-0.5__
+Actual version : __beta-0.5.1__
 
 # Why this one ?
 Simple MVC architecture, easy to learn, lightweight, no need to install anything (just upload the framework files), easily support multiple languages and features helpful built-in functionalities (log, notifications...).
@@ -21,10 +21,7 @@ Installation & documentation :
 
 Notes of the version :
 ------------------------------
-* Added NGINX configuration file inside "/nginx_configuration.txt".
-* Ajusted apache configuration file (.htaccess).
-* Improved router speed and logic.
-* Corrected the name of controllers.
+* Fixed language implementation errors.
 
 [1]: https://berwick.fr/projects/directframework/documentation
 [2]: https://berwick.fr/projects/directframework/documentation/support-multi-lang
