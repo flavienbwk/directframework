@@ -6,7 +6,6 @@
  * 
  */
 @session_start();
-date_default_timezone_set("Europe/Paris");
 
 class Direct {
 
@@ -181,7 +180,7 @@ class Direct {
             /*
              * Set it to true when you want to call a link 
              * in your navbar so renderURI() can return
-             * a path relative to the name of the controlers.
+             * a path relative to the name of the controllers.
              */
             return (isset($_GET["path_raw"])) ? $_GET["path_raw"] . $path : "" . $path;
         } else {
@@ -298,19 +297,18 @@ class Direct {
                 $to_save["options"] = array();
                 $pre_filled_array = array(
                     "backtrace" => $dbt[0]["args"][0], // File from where is called addToLog().
-                    "user" => (isset($_SESSION["user"]["UTI_SECURE_ID"])) ? $_SESSION["user"]["UTI_SECURE_ID"] : "Unknwown", // User ids or unknown if not logged in.
                     "ip" => $this->getIp() // Get user IP.
                 );
-                foreach ($options as $option=>$val) {
-                    if (isset($pre_filled_array[$option])&&is_int($option)) {
+                foreach ($options as $option => $val) {
+                    if (isset($pre_filled_array[$option]) && is_int($option)) {
                         array_push($to_save["options"], array(
                             "f_name" => $option,
                             "content" => (empty($pre_filled_array[$option])) ? "" : $pre_filled_array[$option]
                         ));
-                    }else{
-                        array_push($to_save["options"],array(
-                           "f_name"=>$option,
-                            "content"=>$val
+                    } else {
+                        array_push($to_save["options"], array(
+                            "f_name" => $option,
+                            "content" => $val
                         ));
                     }
                 }
@@ -335,6 +333,12 @@ class Direct {
             }
             file_put_contents($log_filename, $to_save);
         }
+    }
+
+    public function forceShowPHPErrors() {
+        ini_set('display_errors', 1);
+        ini_set('display_startup_errors', 1);
+        error_reporting(E_ALL);
     }
 
 }

@@ -16,16 +16,13 @@
 
             <div class="tutorial-part">
                 <h2>Explanations</h2>
-                <p>Briefly : you will enter the line <code>$Page->setLanguage("lang_you_want")</code>, in which <i>lang_you_want</i> is the language you want in the ISO nomenclature (for example : english is "en", french is "fr"...) in your <b>controler file</b>, after declaring the <i>Page</i> class.</p>
+                <p>Briefly : you will enter the line <code>$Page->setLanguage("lang_you_want")</code>, in which <i>lang_you_want</i> is the language you want in the ISO nomenclature (for example : english is "en", french is "fr"...) in your <b>controller file</b>, after declaring the <i>Page</i> class.</p>
                 <div class="pre-uncolored">
                     /*
-                    * For example in Controler/Index/indexControler.php
+                    * For example in Controller/Index/indexController.php
                     */
                     <br/>
                     <br/>
-                    <div class="uncolored">
-                        require(dirname(__FILE__)."/../../Components/Page.class.php");
-                    </div>
                     <div class="uncolored">
                         $Page = new Page(); // Declaring Page class
                     </div>
@@ -69,7 +66,7 @@
                     <li>
                         <p>Query the translation with the file name. In any <b>view</b> or <b>model</b>, put :</p>
                         <div class="pre-uncolored">
-                            <?php highlight_string(file_get_contents($Page->renderURI("Controler/Documentation/assets/example-translation." . $Page->getLanguage() . ".php"))); ?>
+                            <?php highlight_string(file_get_contents($Page->renderURI("Controller/Documentation/assets/example-translation." . $Page->getLanguage() . ".php"))); ?>
                         </div>
                         <p>Here, the file called is <code>./Components/langs/en/<b>Index.index.json</b></code>.</p>
                     </li>
@@ -77,7 +74,7 @@
                     <li>
                         <p>Directly query the string from a <b>view</b> (here from the <code><b><i>Index/indexView.php</i></b></code> view).</p>
                         <i><p>The translation file name must respect the nomenclature given before.</p></i>
-                        <pre><?php highlight_string(file_get_contents($Page->renderURI("Controler/Documentation/assets/example-translation-simple." . $Page->getLanguage() . ".php"))); ?></pre>
+                        <pre><?php highlight_string(file_get_contents($Page->renderURI("Controller/Documentation/assets/example-translation-simple." . $Page->getLanguage() . ".php"))); ?></pre>
                         <p>Here, the framework directly detects where is the translation called from, and attributes the translation file to look for as <code>./Components/langs/en/<b>Index.index.json</b></code>. </p>
                     </li>
                 </ul>

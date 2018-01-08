@@ -25,8 +25,7 @@
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="documentation"><?= $Page->getString("navbar_documentation", "Index.header.json") ?></a></li>
-                    <li><a href="#" class="uncolored"><?= $Page->getString("navbar_news", "Index.header.json") ?></a></li>
-                    <li><a href="#" class="uncolored"><?= $Page->getString("navbar_contact", "Index.header.json") ?></a></li>
+                    <li><a href="https://github.com/flavienbwk/directframework" class="uncolored" target="_blank">GitHub</a></li>
                 </ul>
             </div>
         </div>

@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <center>
-                    <div class="label label-info">Last version : ed-0.10</div>
+                    <div class="label label-info">Latest version : beta-0.5.1</div>
                 </center>
             </div>
         </div>
@@ -30,7 +30,7 @@
                         <h2>Multi-language support</h2>
                     </div>
                     <div class="feature-content">
-                        <p>Easily support multiple languages and add a new one quickly. Traductions are files so they can be easily translated in another language.</p>
+                        <p>Easily support multiple languages and add a new one quickly. Traductions are JSON files so they can be easily translated in another language.</p>
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                         <h2>Light weight</h2>
                     </div>
                     <div class="feature-content">
-                        <p>Direct won't take much space on your disk (6.5 ko of framework). Light weight means as well less performance-consumming.</p>
+                        <p>Direct won't take much space on your disk (28.9 ko of framework). Light weight means as well less performance-consumming.</p>
                     </div>
                 </div>
             </div>

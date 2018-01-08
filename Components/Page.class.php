@@ -14,8 +14,8 @@ class Page extends Direct {
 
     public function __construct() {
         parent::__construct();
-        $this->_page_title = $this->getConfigVar("project_title");
-        $this->setTitle($this->getConfigVar("project_title"));
+        $this->_page_title = $this->getConfigVar("website_title");
+        $this->setTitle($this->getConfigVar("website_title"));
         $this->setLanguage("en");
 
         $this->goFollowPath(); // Facultative.
@@ -42,30 +42,28 @@ class Page extends Direct {
          * Form : FolderFilename.json
          * Example : IndexIndex.json
          */
-
         if ($language && !empty($language)) {
             $this->setLanguage($language);
         }
-
         if ($file === false) {
             $backtrace = debug_backtrace();
             $backtrace = explode("/", $backtrace[0]["file"]);
             $backtrace_file = $backtrace[sizeof($backtrace) - 1];
             if (substr($backtrace_file, -8) == "View.php") {
                 $backtrace_file = substr($backtrace_file, 0, -8);
-            } else if (substr($backtrace_file, -13) == "Controler.php") {
-                $backtrace_file = substr($backtrace_file, 0, -13);
+            } else if (substr($backtrace_file, -14) == "Controller.php") {
+                $backtrace_file = substr($backtrace_file, 0, -14);
             } else if (substr($backtrace_file, -9) == "Model.php") {
                 $backtrace_file = substr($backtrace_file, 0, -9);
             } else {
-                $this->raiseError("Impossible to get the backtrace. (" . $var . ", for " . $backtrace_file . ", " . substr($backtrace_file, -8) . ")");
+                echo $this->raiseError("Impossible to get the backtrace. (" . $var . ", for " . $backtrace_file . ", " . substr($backtrace_file, -8) . ")");
                 exit();
             }
             $backtrace_folder = $backtrace[sizeof($backtrace) - 2];
             $file = $backtrace_folder . "." . $backtrace_file . ".json";
         }
-
         $path = dirname(__FILE__) . "/langs/" . $this->_language . "/" . $file;
+        
         if (file_exists($path)) {
             $data = json_decode(file_get_contents($path), true);
             if (isset($data[$var])) {
@@ -74,7 +72,7 @@ class Page extends Direct {
                 return false;
             }
         } else {
-            $this->raiseError("Inexistant traduction file (" . $this->_language . "/" . $file . ").");
+            echo $this->raiseError("Inexistant traduction file (" . $this->_language . "/" . $file . ").");
             exit();
         }
     }
@@ -159,7 +157,7 @@ class Page extends Direct {
                                 $GLOBALS[$array[$i]] = sha1($_POST[$array[$i]]);
                             } else {
                                 // Adding a salt.
-                                $salt = substr($config[$i],4);
+                                $salt = substr($config[$i], 4);
                                 $GLOBALS[$array[$i]] = sha1($_POST[$array[$i]] . $salt);
                             }
                         } else {

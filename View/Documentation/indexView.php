@@ -10,11 +10,11 @@
                 <center>
                     <h1>Downloading & installing</h1>
                     <p>
-                        Direct does not use third-party library.
+                        Direct doesn't use any third-party library.
                         <br/>
                         No configuration needed relative to the server. Direct uses relative paths.
                         <br/>
-                        So you can just upload the files of the framework on your server.
+                        So you just have to upload the files of the framework on your server, and start developing.
                     </p>
                 </center>
             </div>
@@ -44,11 +44,11 @@
                     <div class="tutorial-part">
                         <h1>Get started!</h1>
                         <h2>The structure.</h2>
-                        <p>Direct uses the Model-View-Controler architecture to facilitate the understanding of your code by another developer and to organize that code.</p>
+                        <p>Direct uses the Model-View-Controller architecture to facilitate the understanding of your code by another developer, to organize that code and to make it reliable.</p>
                         <table class="table">
                             <tr><th>Model</th><td>A php class which will proceed to the computation (calculus, functions etc...). This is the brain part.</td></tr>
                             <tr><th>View</th><td>A php file which will include all the HTML of your page, calling the model class functions to render the informations you want.</td></tr>
-                            <tr><th>Controler</th><td>Used to include your models and views. This is this file which will be called by the Router so your view can the shown to the user.</td></tr>
+                            <tr><th>Controller</th><td>Used to include your models and views. This is this file which will be called by the Router so your view can be shown to the user.</td></tr>
                         </table>
                         <p>
                             These three components have their own repositories at the root of the project. Here's how it is organized and the nomenclature to respect.
@@ -57,10 +57,10 @@
                         <pre>
     ./Components
         [This directory contains the Direct classes, traduction files and assets]
-    ./Controler
+    ./Controller
         ./Index
-            indexControler.php [Compulsory file]
-            whatyouwantControler.php
+            indexController.php [Compulsory file]
+            whatyouwantController.php
     ./Model
         ./Index
             indexModel.php
@@ -72,14 +72,14 @@
     .htaccess
                         </pre>
                         <p>
-                            Inside <code>Controler/</code>, <code>Model/</code> and <code>View/</code>, you see there's a <code>Index/</code> folder.
+                            Inside <code>Controller/</code>, <code>Model/</code> and <code>View/</code>, you see there's an <code>Index/</code> folder.
                             <br/>
-                            This Index folder is obligatory. It is called when normally calling your index.php root file.
+                            This Index folder is compulsory. It is called when normally calling your index.php root file.
                             <br/>
                         <div class="alert">
                             <div class="col-lg-1"><img src="assets/images/warning.png" class="alert-img"/></div>
                             <div class="col-lg-11">
-                                <b>When someone arrives on the index of your website, <code>Controler/Index/indexControler.php</code> will be called. So make sure it is always existent.</b>
+                                <b>When someone arrives on the index of your website, <code>Controller/Index/indexController.php</code> will be called. So make sure it is always existent.</b>
                             </div>
                         </div>
                         </p>
@@ -92,7 +92,7 @@
                         <table class="table">
                             <tr><th>Views</th><td><i>Inside</i> <div class="pre-uncolored">View<b>/</b><span class="uncolored"><span class="span-important">WhatYouWant-Folder</span><b>/</b><b><span class="span-important">pagenameyouwant</span>View.php</span></b></div></td></tr>
                             <tr><th>Models</th><td><i>Inside</i> <div class="pre-uncolored">Model<b>/</b><span class="uncolored"><span class="span-important">WhatYouWant-Folder</span><b>/</b><b><span class="span-important">pagenameyouwant</span>Model.php</span></b></div></td></tr>
-                            <tr><th>Controlers</th><td><i>Inside</i> <div class="pre-uncolored">Controler<b>/</b><span class="uncolored"><span class="span-important">WhatYouWant-Folder</span><b>/</b><b><span class="span-important">pagenameyouwant</span>Controler.php</span></b></div></td></tr>
+                            <tr><th>Controllers</th><td><i>Inside</i> <div class="pre-uncolored">Controller<b>/</b><span class="uncolored"><span class="span-important">WhatYouWant-Folder</span><b>/</b><b><span class="span-important">pagenameyouwant</span>Controller.php</span></b></div></td></tr>
                         </table>
                         <p>
                             To have a more organized code, for each view, you have to create a corresponding controler and model file as shown just up. But this is facultative.
@@ -103,14 +103,14 @@
                         <p class="question">What do we want ?</p>
                         <p class="answer">We want to access the following URL where we would like to display our articles : <div class="pre-uncolored">(https://)example.com/<span class="green">forum</span>/<span class="red">articles</span></div>.</p>
                         <ol>
-                            <li>Create the <span class="green">folder</span> and <span class="red">file</span> <div class="pre-uncolored">./Controler/<span class="green">Forum</span>/<span class="red">articlesControler.php</span></div></li>
+                            <li>Create the <span class="green">folder</span> and <span class="red">file</span> <div class="pre-uncolored">./Controller/<span class="green">Forum</span>/<span class="red">articlesController.php</span></div></li>
                             <li>Create the <span class="green">folder</span> and <span class="red">file</span> <div class="pre-uncolored">./Model/<span class="green">Forum</span>/<span class="red">articlesModel.php</span></div></li>
                             <li>Create the <span class="green">folder</span> and <span class="red">file</span> <div class="pre-uncolored">./View/<span class="green">Forum</span>/<span class="red">articlesView.php</span></div></li>
                         </ol>
                         <div class="alert">
                             <div class="col-lg-1"><img src="assets/images/warning.png" class="alert-img"/></div>
                             <div class="col-lg-11">
-                                For example here, accessing <div class="pre-uncolored-small">(https://)example.com/<span class="green">forum</span></div> will make the framework run <div class="pre-uncolored-small">(https://)example.com/Controler/<span class="green">Forum</span>/<b>indexControler.php</b></div>
+                                For example here, accessing <div class="pre-uncolored-small">(https://)example.com/<span class="green">forum</span></div> will make the framework run <div class="pre-uncolored-small">(https://)example.com/Controller/<span class="green">Forum</span>/<b>indexController.php</b></div>
                             </div>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
                                 <span class="green">folders</span> and <span class="red">files</span>. For example, the <b>header</b> will require the following files (the model is facultative) :
                                 <ul>
                                     <li>
-                                        <div class="pre-uncolored">./Controler/<span class="green">Forum</span>/<span class="red">headerControler.php</span></div>
+                                        <div class="pre-uncolored">./Controller/<span class="green">Forum</span>/<span class="red">headerController.php</span></div>
                                     </li>
                                     <li>
                                         <div class="pre-uncolored">./Model/<span class="green">Forum</span>/<span class="red">headerModel.php</span></div>
@@ -135,9 +135,9 @@
                                 </ul>
                             </li>
                             <li>
-                                <p>We have then to include these models and views in the articles controler <b>./Controler/Forum/articlesControler.php</b>.</p>
+                                <p>We have then to include these models and views in the articles controler <b>./Controller/Forum/articlesController.php</b>.</p>
                                 <div class="pre-uncolored">
-                                    <?php highlight_string(file_get_contents($Page->renderURI("Controler/Documentation/assets/example." . $Page->getLanguage() . ".php"))); ?>
+                                    <?php highlight_string(file_get_contents($Page->renderURI("Controller/Documentation/assets/example." . $Page->getLanguage() . ".php"))); ?>
                                 </div>
                             </li>
                             <li>

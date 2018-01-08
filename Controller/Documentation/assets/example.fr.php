@@ -9,7 +9,10 @@
  * The two following lines are really important.
  * Make sure you have inclued them.
  */
-require(dirname(__FILE__)."/../../Components/Page.class.php");
+/*
+ * The following require() is useless since beta-0.1 as Autoloader automatically loads the Page class :
+ * require(dirname(__FILE__)."/../../Components/Page.class.php");
+ */
 $Page = new Page();
 
 // ========================================

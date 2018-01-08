@@ -36,7 +36,7 @@
                 <div class="card-block">
                     <div class="label label-default">(void)</div>
                     <h3><code>$Page->setTitle(string $title [, bool $config_title]);</code></h3>
-                    <p>Set the title of your current page. Use it in the controler.</p>
+                    <p>Set the title of your current page. Use it in the controller.</p>
                     <p>If <code>$config_title</code> is set to true, <code>setTitle()</code> returns the <i>$title</i> concatenated with the <i>website_title</i>, present in the <i>Components/config.json</i> config file.</p>
                     <p>Then, call <code>$Page->getTitle();</code> in your view to get it.</p>
                 </div>
