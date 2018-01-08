@@ -4,6 +4,7 @@
 
 # What is it ?
 A very simple and lightweight PHP framework built to save you time by deploying quickly your ideas with a clean code.
+Working with Apache or NGINX.
 
 Actual version : __beta-0.5.1__
 
@@ -22,6 +23,7 @@ Installation & documentation :
 Notes of the version :
 ------------------------------
 * Fixed language implementation errors.
+* Clarified README.
 
 [1]: https://berwick.fr/projects/directframework/documentation
 [2]: https://berwick.fr/projects/directframework/documentation/support-multi-lang
