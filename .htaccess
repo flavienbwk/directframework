@@ -1,9 +1,6 @@
 # Direct Framework - Under MIT license
 # The following lines are critical for the good working of the framework.
-# Please do not remove any!
-
-# This is the alternative .htaccess file.
-# You might need it if you don't host the framework on a shared hosting plan.
+# Please do NOT remove any!
 
 Options +FollowSymlinks
 RewriteEngine On
