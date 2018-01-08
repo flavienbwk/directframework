@@ -14,12 +14,6 @@ Simple architecture, easy to learn, lightweight, no need to install anything (ju
 
 Available developer if there's a problem.
 
-Notes of the version :
-----------------------
-* Updated Direct Framework functions from version ed-0.1 to version ed-0.10.
-* Added the useful functionalities documentation.
-* Updated style contents.
-
 Installation & documentation :
 ------------------------------
 
