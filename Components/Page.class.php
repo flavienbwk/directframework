@@ -15,11 +15,11 @@ class Page extends Direct {
 
     public function __construct() {
         parent::__construct();
-        $this->_page_title = $this->getConfigVar("project_title");
-        $this->setTitle($this->getConfigVar("project_title"));
+        $this->_page_title = $this->getConfigVar("website_title");
+        $this->setTitle($this->getConfigVar("website_title"));
         $this->setLanguage("en");
 
-        $this->goFollowPath(); // Facultative.
+        // $this->goFollowPath(); // Facultative : automatically follows the path set with $Page->setFollowPath().
     }
 
     public function setLanguage($language) {
@@ -54,7 +54,7 @@ class Page extends Direct {
             $backtrace_file = $backtrace[sizeof($backtrace) - 1];
             if (substr($backtrace_file, -8) == "View.php") {
                 $backtrace_file = substr($backtrace_file, 0, -8);
-            } else if (substr($backtrace_file, -13) == "Controler.php") {
+            } else if (substr($backtrace_file, -13) == "Controller.php") {
                 $backtrace_file = substr($backtrace_file, 0, -13);
             } else if (substr($backtrace_file, -9) == "Model.php") {
                 $backtrace_file = substr($backtrace_file, 0, -9);
@@ -194,7 +194,7 @@ class Page extends Direct {
     /**
     * $type is whether "css" or "js".
     */
-    public function getRessource(string $type){
+    public function getRessource($type){
         $concatenated="";
         if($type=="css"){
             foreach($this->_ressources_css as $ressource){
@@ -214,7 +214,7 @@ class Page extends Direct {
      * Returns true or false if ressource variable is not empty for $type.
      * $type is whether "css" or "js".
      */
-    public function isRessource(string $type) {
+    public function isRessource($type) {
         if ($type == "css") {
             if (!empty($this->_ressources_css)) {
                 return true;

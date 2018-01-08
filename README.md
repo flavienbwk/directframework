@@ -5,12 +5,12 @@
 # What is it ?
 A very simple and lightweight PHP framework built to save you time by deploying quickly your ideas with a clean code.
 
-Actual version : __beta-0.4.2__
+Actual version : __beta-0.5__
 
 # Why this one ?
 Simple MVC architecture, easy to learn, lightweight, no need to install anything (just upload the framework files), easily support multiple languages and features helpful built-in functionalities (log, notifications...).
 
-Available developer if there's a problem.
+Available developer if there's an issue.
 
 Installation & documentation :
 ------------------------------
@@ -21,9 +21,10 @@ Installation & documentation :
 
 Notes of the version :
 ------------------------------
-* Added an alternative .htaccess file in case of the original one does 
-not work on your system. I've experienced such a problem with some 
-machines.
+* Added NGINX configuration file inside "/nginx_configuration.txt".
+* Ajusted apache configuration file (.htaccess).
+* Improved router speed and logic.
+* Corrected the name of controllers.
 
 [1]: https://berwick.fr/projects/directframework/documentation
 [2]: https://berwick.fr/projects/directframework/documentation/support-multi-lang

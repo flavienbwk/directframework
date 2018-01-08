@@ -180,7 +180,7 @@ class Direct {
             /*
              * Set it to true when you want to call a link 
              * in your navbar so renderURI() can return
-             * a path relative to the name of the controlers.
+             * a path relative to the name of the controllers.
              */
             return (isset($_GET["path_raw"])) ? $_GET["path_raw"] . $path : "" . $path;
         } else {
