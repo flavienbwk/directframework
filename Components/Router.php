@@ -23,7 +23,8 @@ if (!empty($_POST)) {
     $_SESSION["directframework"]["post_parameters"] = $_POST;
 }
 
-if (isset($_GET["index"]) || (isset($_GET["index"]) && empty($_GET["index"]))) {
+if (isset($_GET["index"]) || (!isset($_GET["index"]) && 
+empty($_GET["index"]))) {
     if (@file_exists("../Controller/Index/$index_filename")) {
         require("../Controller/Index/$index_filename");
     }
@@ -90,7 +91,6 @@ if (isset($_GET["index"]) || (isset($_GET["index"]) && empty($_GET["index"]))) {
         }
         $_GET["path_raw"] = $path_raw;
         
-        var_dump($last_valid_uri);
         require(renderURI($last_valid_uri));
     } else {
         header("HTTP/1.0 404 Not Found");
