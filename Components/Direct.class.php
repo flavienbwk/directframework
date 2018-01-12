@@ -175,6 +175,14 @@ class Direct {
         return $ip;
     }
 
+    /**
+     * Checks if the URI exists in the case of $nav_link=false.
+     * If $nav_link is true, returns the right route for any place 
+     * you are on the website.
+     * @param type $path
+     * @param boolean $nav_link If your link is a route.
+     * @return boolean|string
+     */
     public function renderURI($path, $nav_link = false) {
         if ($nav_link) {
             /*
@@ -299,16 +307,16 @@ class Direct {
                     "backtrace" => $dbt[0]["args"][0], // File from where is called addToLog().
                     "ip" => $this->getIp() // Get user IP.
                 );
-                foreach ($options as $option=>$val) {
-                    if (isset($pre_filled_array[$option])&&is_int($option)) {
+                foreach ($options as $option => $val) {
+                    if (isset($pre_filled_array[$option]) && is_int($option)) {
                         array_push($to_save["options"], array(
                             "f_name" => $option,
                             "content" => (empty($pre_filled_array[$option])) ? "" : $pre_filled_array[$option]
                         ));
-                    }else{
-                        array_push($to_save["options"],array(
-                           "f_name"=>$option,
-                            "content"=>$val
+                    } else {
+                        array_push($to_save["options"], array(
+                            "f_name" => $option,
+                            "content" => $val
                         ));
                     }
                 }
@@ -334,11 +342,45 @@ class Direct {
             file_put_contents($log_filename, $to_save);
         }
     }
-    
-    public function forceShowPHPErrors(){
+
+    public function forceShowPHPErrors() {
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
+    }
+
+    public function curlPost($adress, $post, $custom_header = false) {
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $adress);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HEADER, false);
+        if ($custom_header) {
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $custom_header);
+        }
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($post));
+        $r = curl_exec($curl);
+        $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        $array = ["response" => $r, "debug" => curl_error($curl), "status" => $code];
+        curl_close($curl);
+        return $array;
+    }
+
+    public function curlGet($adress, $custom_header = false) {
+        if (is_array($custom_header) === false) {
+            $custom_header = array();
+        }
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => $adress,
+            CURLOPT_HTTPHEADER => $custom_header
+        ));
+        $code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        $resp = curl_exec($curl);
+        $array = ["response" => $resp, "debug" => curl_error($curl), "status" => $code];
+        curl_close($curl);
+        return $array;
     }
 
 }

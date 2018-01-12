@@ -3,7 +3,7 @@
 
 /*
  * Direct Framework, under MIT license.
- * beta-0.5
+ * beta-0.5.3
  * Middleware Router : manage the inclusion and the URI.
  */
 session_start();
@@ -23,8 +23,21 @@ if (!empty($_POST)) {
     $_SESSION["directframework"]["post_parameters"] = $_POST;
 }
 
-if (isset($_GET["index"]) || (!isset($_GET["index"]) && 
-empty($_GET["index"]))) {
+/*
+ * Computing $_GET["path_raw"] (path called).
+ */
+$path_raw = "";
+$path_raw_explode = explode("/", $_SERVER["PHP_SELF"]);
+foreach ($path_raw_explode as $pre) {
+    if ($pre != "Components") {
+        $path_raw .= $pre . "/";
+    } else {
+        break;
+    }
+}
+$_GET["path_raw"] = $path_raw;
+
+if (isset($_GET["index"]) || (!isset($_GET["index"]) && empty($_GET["index"]) && (!isset($_GET["url"]) || empty($_GET["url"])))) {
     if (@file_exists("../Controller/Index/$index_filename")) {
         require("../Controller/Index/$index_filename");
     }
@@ -75,22 +88,8 @@ empty($_GET["index"]))) {
             }
         }
     }
-    
+
     if ($found) {
-        /*
-         * Computing $_GET["path_raw"] (path called).
-         */
-        $path_raw = "";
-        $path_raw_explode = explode("/", $_SERVER["PHP_SELF"]);
-        foreach ($path_raw_explode as $pre) {
-            if ($pre != "Components") {
-                $path_raw .= $pre . "/";
-            } else {
-                break;
-            }
-        }
-        $_GET["path_raw"] = $path_raw;
-        
         require(renderURI($last_valid_uri));
     } else {
         header("HTTP/1.0 404 Not Found");

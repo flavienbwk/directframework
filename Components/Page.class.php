@@ -127,7 +127,7 @@ class Page extends Direct {
         return true;
     }
 
-    public function post_variables_init(array $array, $config) {
+    public function post_variables_init(array $array, $config = null) {
         /*
          * Automaticaly declares the POST variables as variables
          * of the same name, provided in $array.
