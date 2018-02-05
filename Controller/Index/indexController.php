@@ -10,6 +10,8 @@
  */
 // Autoloader automatically includes the Page class.
 $Page = new Page();
+$Page->setLanguage("fr");
+echo $Page->getLanguage();
 
 /*
  * Models (facultative)

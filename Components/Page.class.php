@@ -22,10 +22,10 @@ class Page extends Direct {
     }
 
     public function setLanguage($language) {
-        if (file_exists(dirname(__FILE__) . "/langs/" . $language . "/")) {
+        if (file_exists(dirname(__FILE__) . "/../Web/langs/" . $language . "/")) {
             $this->_language = $language;
         } else {
-            $this->raiseError("Inexistant language. Not found under Components/langs/<b>$language</b>. Replaced with english (en).");
+            $this->raiseError("Inexistant language. Not found under Web/langs/<b>$language</b>. Replaced with english (en).");
         }
     }
 
@@ -62,7 +62,7 @@ class Page extends Direct {
             $backtrace_folder = $backtrace[sizeof($backtrace) - 2];
             $file = $backtrace_folder . "." . $backtrace_file . ".json";
         }
-        $path = dirname(__FILE__) . "/langs/" . $this->_language . "/" . $file;
+        $path = dirname(__FILE__) . "/../Web/langs/" . $this->_language . "/" . $file;
 
         if (file_exists($path)) {
             $data = json_decode(file_get_contents($path), true);

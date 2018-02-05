@@ -2,7 +2,7 @@
 
 /*
  * Direct Framework, under MIT license.
- * Automatically includes all classes present in /Model and /Components/modules.
+ * Automatically includes all classes present in /Model and /Web/modules.
  */
 
 class Autoloader {
@@ -17,8 +17,8 @@ class Autoloader {
     function autoload($class_name) {
         $included = false;
 
-        if (file_exists("../Components/modules")) {
-            $included = $this->requireFile(["../Components/modules"], $class_name);
+        if (file_exists("../Web/modules")) {
+            $included = $this->requireFile(["../Web/modules"], $class_name);
         }
 
         if (file_exists("../Model") && !$included) {

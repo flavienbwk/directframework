@@ -75,8 +75,8 @@ class Direct {
     }
 
     function __construct() {
-        if (file_exists(dirname(__FILE__) . "/config.json")) {
-            $config = json_decode(file_get_contents(dirname(__FILE__) . "/config.json"), true);
+        if (file_exists(dirname(__FILE__) . "/../Web/config.json")) {
+            $config = json_decode(file_get_contents(dirname(__FILE__) . "/../Web/config.json"), true);
             if (!empty($config) && json_last_error() == 0) {
                 $this->_config = $config;
             } else {

@@ -6,7 +6,7 @@
 A very simple and lightweight PHP framework built to save you time by deploying quickly your ideas with a clean code.
 Working with Apache or NGINX.
 
-Actual version : __beta-0.5.3__
+Actual version : __beta-0.6__
 
 # Why this one ?
 Simple MVC architecture, easy to learn, lightweight, no need to install anything (just upload the framework files), easily support multiple languages and features helpful built-in functionalities (log, notifications...).
@@ -22,9 +22,9 @@ Installation & documentation :
 
 Notes of the version :
 ------------------------------
-* Added $Page->curlPost() and $Page->curlGet methods in 'Page.class.php'.
-* Modified Page.class.php for the $Page->post_variables_init() method. Second parameter now facultative (rarely used).
-* Router.php modified to fix one bug.
+* CAREFUL : All websites under beta-0.6 won't be compatible with beta-0.6.x versions.
+* The aim of this update is to structure a more logic way to interact with the framework : all what is inside `/Components` SHOULD NOT be touched.
+* Any file or asset you need to add/modify has to be under `/Web`.
 
 [1]: https://berwick.fr/projects/directframework/documentation
 [2]: https://berwick.fr/projects/directframework/documentation/support-multi-lang

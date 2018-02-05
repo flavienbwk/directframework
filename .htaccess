@@ -6,7 +6,7 @@ Options +FollowSymlinks
 RewriteEngine On
 
 # Access assets (images/css/js...).
-RewriteRule assets((/(.*)[.]([a-zA-Z]){1,4}){1,}) Components/assets$1 [L]
+RewriteRule assets((/(.*)[.]([a-zA-Z]){1,4}){1,}) Web/assets$1 [L]
 
 # Allows to create routes.
 RewriteCond %{REQUEST_FILENAME} !-f
