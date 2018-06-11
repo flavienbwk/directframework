@@ -3,14 +3,15 @@
 
 /*
  * Direct Framework, under MIT license.
- * beta-0.5.3
- * Middleware Router : manage the inclusion and the URI.
+ * Middleware Router : manages the inclusion and the URIs.
  */
+
 session_start();
 
 /*
  * Autoloading the classes.
  */
+
 require("Autoloader.class.php");
 require("Page.class.php");
 $Autoloader = new Autoloader;
@@ -19,6 +20,7 @@ $index_filename = "indexController.php";
 /*
  * Extracting config.json parameters.
  */
+
 if (!empty($_POST)) {
     $_SESSION["directframework"]["post_parameters"] = $_POST;
 }
@@ -26,21 +28,20 @@ if (!empty($_POST)) {
 /*
  * Computing $_GET["path_raw"] (path called).
  */
+
 $path_raw = "";
 $path_raw_explode = explode("/", $_SERVER["PHP_SELF"]);
 foreach ($path_raw_explode as $pre) {
-    if ($pre != "Components") {
+    if ($pre != "Components")
         $path_raw .= $pre . "/";
-    } else {
+    else
         break;
-    }
 }
 $_GET["path_raw"] = $path_raw;
 
 if (isset($_GET["index"]) || (!isset($_GET["index"]) && empty($_GET["index"]) && (!isset($_GET["url"]) || empty($_GET["url"])))) {
-    if (@file_exists("../Controller/Index/$index_filename")) {
+    if (@file_exists("../Controller/Index/$index_filename"))
         require("../Controller/Index/$index_filename");
-    }
 } else if (isset($_GET["url"])) {
     $path = htmlentities(strtolower($_GET["url"]));
     $split_url = explode("/", $path);
@@ -69,9 +70,6 @@ if (isset($_GET["index"]) || (!isset($_GET["index"]) && empty($_GET["index"]) &&
         }
 
         if ($found) {
-            /*
-             * Computing $_GET["parameters"];
-             */
             $i++;
             while ($i < sizeof($split_url)) {
                 $_GET["parameters"][] = $split_url[$i];
@@ -89,20 +87,19 @@ if (isset($_GET["index"]) || (!isset($_GET["index"]) && empty($_GET["index"]) &&
         }
     }
 
-    if ($found) {
+    if ($found)
         require(renderURI($last_valid_uri));
-    } else {
+    else
         header("HTTP/1.0 404 Not Found");
-    }
 } else {
     header("HTTP/1.0 404 Not Found");
 }
 
+/**
+ * Looks for the right URL depending on
+ * the relative path where the file is called.
+ */
 function renderURI($path) {
-    /*
-     * Looks for the right URL depending on
-     * the relative path where the file is called.
-     */
     $open = $path;
     $open1 = "./" . $path;
     $open2 = "../" . $path;

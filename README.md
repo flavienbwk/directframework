@@ -6,7 +6,7 @@
 A very simple and lightweight PHP framework built to save you time by deploying quickly your ideas with a clean code.
 Working with Apache or NGINX.
 
-Actual version : __beta-0.6__
+Actual version : __beta-0.7__
 
 # Why this one ?
 Simple MVC architecture, easy to learn, lightweight, no need to install anything (just upload the framework files), easily support multiple languages and features helpful built-in functionalities (log, notifications...).
@@ -22,9 +22,11 @@ Installation & documentation :
 
 Notes of the version :
 ------------------------------
-* CAREFUL : All websites under beta-0.6 won't be compatible with beta-0.6.x versions.
-* The aim of this update is to structure a more logic way to interact with the framework : all what is inside `/Components` SHOULD NOT be touched.
-* Any file or asset you need to add/modify has to be under `/Web`.
+* Added `Model/Index/databaseModel.php` as a useful and simple class to manage your database queries.
+* Added `Model/Index/userModel.php` as an example for using the databaseModel properly *(really simple)*.
+* Added some useful functions : `$Page->handleAjax()`, `$Page->ping()`.
+* Fixed default problems with `$Page->addToLog()`.
+* Updated comments and code readability in `Page.class.php` and `Direct.class.php`.
 
 [1]: https://berwick.fr/projects/directframework/documentation
 [2]: https://berwick.fr/projects/directframework/documentation/support-multi-lang

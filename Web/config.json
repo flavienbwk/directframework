@@ -1,7 +1,7 @@
 {
-    "direct_version": "beta-0.5.3",
-    "app_version": "your_app_version",
-    "website_title": "YOUR DEFAULT WEBSITE TITLE (generaly your brand)",
+    "direct_version": "beta-0.7",
+    "app_version": "1.0 (your app. version)",
+    "website_title": "YOUR WEBSITE TITLE (get it in your headers with $Page->getTitle(), modify it with $Page->setTitle($title))",
     "default_language": "en",
     "active_notifications": "yes",
     "log_disable": "no",
